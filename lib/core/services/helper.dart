@@ -13,11 +13,12 @@ class LocalHelper {
   static String kName = 'name';
   static String kPfp = 'pfp';
   static String kIsUploaded = 'isUploaded';
+  static String isDark = 'isDark';
 
   static init() async {
+    Hive.registerAdapter(TaskModelAdapter());
     await Hive.openBox(kUserBox);
     await Hive.openBox(kTaskBox);
-    Hive.registerAdapter(TaskModelAdapter());
     _userBox = Hive.box(kUserBox);
     _taskBox = Hive.box(kTaskBox);
   }

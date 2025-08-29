@@ -22,6 +22,7 @@ class TaskScreen extends StatefulWidget {
 
 class _TaskScreenState extends State<TaskScreen> {
   String selectedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+  bool isEdit = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +49,9 @@ class _TaskScreenState extends State<TaskScreen> {
     return DatePicker(
       DateTime.now(),
       height: 115,
+      dayTextStyle: TextStyles.getSmall(),
+      monthTextStyle: TextStyles.getSmall(),
+      dateTextStyle: TextStyles.getTitle(),
       width: 95,
       initialSelectedDate: DateTime.now(),
       selectionColor: AppColors.primaryColor,

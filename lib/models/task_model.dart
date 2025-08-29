@@ -30,4 +30,26 @@ class TaskModel {
     required this.color,
     required this.isCompleted,
   });
+
+  copyWith({
+    String? id,
+    String? title,
+    String? description,
+    String? date,
+    String? stDate,
+    String? enDate,
+    int? color,
+    bool? isCompleted,
+  }) {
+    return TaskModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      date: date ?? this.date,
+      stDate: stDate ?? this.stDate,
+      enDate: enDate ?? this.enDate,
+      color: color ?? this.color,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
 }

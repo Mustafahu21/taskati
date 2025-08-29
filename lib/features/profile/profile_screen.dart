@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:day_night_themed_switcher/day_night_themed_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati/components/main_button.dart';
-import 'package:taskati/core/constants/asset_names.dart';
 import 'package:taskati/core/services/helper.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
@@ -24,12 +24,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(size: 30, color: AppColors.primaryColor),
         actions: [
-          IconButton(
-            icon: Icon(Icons.sunny, color: AppColors.primaryColor, size: 30),
-            onPressed: () {
-              // Handle edit button press
+          // IconButton(
+          //   icon: Icon(Icons.sunny, color: AppColors.primaryColor, size: 30),
+          //   onPressed: () {
+          //     bool isDark = LocalHelper.getData(LocalHelper.isDark) ?? false;
+          //     LocalHelper.cacheData(LocalHelper.isDark, !isDark);
+          //     setState(() {});
+          //   },
+          // ),
+          DayNightSwitch(
+            size: 20,
+            duration: Duration(milliseconds: 750),
+            initiallyDark: LocalHelper.getData(LocalHelper.isDark) ?? false,
+            onChange: (light) {
+              LocalHelper.cacheData(LocalHelper.isDark, light);
+              setState(() {});
             },
           ),
+          SizedBox(width: 20),
         ],
       ),
       body: Center(

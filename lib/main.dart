@@ -6,7 +6,7 @@ import 'package:taskati/features/splash/splash.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
-  LocalHelper.init();
+  await LocalHelper.init();
   runApp(const MainApp());
 }
 
@@ -15,10 +15,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppThemes.lightTheme,
-      home: const SplashScreen(),
+    return ValueListenableBuilder(
+      valueListenable: LocalHelper.userBox.listenable(),
+      builder: (context, box, child) {
+        bool isDark = LocalHelper.getData(LocalHelper.isDark) ?? false;
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+          theme: AppThemes.lightTheme,
+          darkTheme: AppThemes.darkTheme,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

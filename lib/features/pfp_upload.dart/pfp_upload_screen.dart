@@ -88,13 +88,13 @@ class _UploadScreenState extends State<UploadScreen> {
       actions: [
         TextButton(
           onPressed: () {
-            if (path != null && nameController.text.isNotEmpty) {
+            if (nameController.text.isNotEmpty) {
               LocalHelper.cacheData(LocalHelper.kPfp, path);
               LocalHelper.cacheData(LocalHelper.kName, nameController.text);
               LocalHelper.cacheData(LocalHelper.kIsUploaded, true);
               pushReplacement(context, TaskScreen());
-            } else if (path == null && nameController.text.isNotEmpty) {
-              showErrorDialog(context, 'Please select an image');
+              // } else if (path == null && nameController.text.isNotEmpty) {
+              //   showErrorDialog(context, 'Please select an image');
             } else if (nameController.text.isEmpty && path != null) {
               showErrorDialog(context, 'Please enter your name');
             } else {

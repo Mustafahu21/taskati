@@ -10,7 +10,7 @@ class TextStyles {
     return TextStyle(
       fontSize: fontSize ?? 18,
       fontWeight: fontWeight ?? FontWeight.bold,
-      color: color ?? AppColors.darkColor,
+      color: color,
     );
   }
 
@@ -22,7 +22,7 @@ class TextStyles {
     return TextStyle(
       fontSize: fontSize ?? 16,
       fontWeight: fontWeight ?? FontWeight.normal,
-      color: color ?? AppColors.darkColor,
+      color: color,
     );
   }
 
@@ -34,7 +34,7 @@ class TextStyles {
     return TextStyle(
       fontSize: fontSize ?? 14,
       fontWeight: fontWeight ?? FontWeight.normal,
-      color: color ?? AppColors.greyColor,
+      color: color,
     );
   }
 }

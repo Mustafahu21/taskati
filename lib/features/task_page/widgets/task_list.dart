@@ -16,9 +16,9 @@ class TaskList extends StatelessWidget {
     return Expanded(
       child: ValueListenableBuilder(
         valueListenable: LocalHelper.taskBox.listenable(),
-        builder: (context, value, child) {
+        builder: (context, box, child) {
           List<TaskModel> tasks = [];
-          for (var task in value.values) {
+          for (var task in box.values) {
             if (task.date == selectedDate) {
               tasks.add(task);
             }
@@ -28,7 +28,18 @@ class TaskList extends StatelessWidget {
           }
           return ListView.separated(
             itemBuilder: (context, index) {
-              return TaskCard(task: tasks[index]);
+              return TaskCard(
+                task: tasks[index],
+                onDone: () {
+                  box.put(
+                    tasks[index].id,
+                    tasks[index].copyWith(isCompleted: true),
+                  );
+                },
+                onDelete: () {
+                  box.delete(tasks[index].id);
+                },
+              );
             },
             separatorBuilder: (context, index) => SizedBox(height: 10),
             itemCount: tasks.length,
